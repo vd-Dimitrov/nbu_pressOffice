@@ -4,6 +4,7 @@ import org.example.models.enums.PaperType;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,17 +20,20 @@ public class PressOffice {
     private BigDecimal paperCosts;
     private BigDecimal salaryCosts;
 
-    public PressOffice(BigDecimal basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, List<Employee> employeeList, Map<PaperType, Long> paperAmount, int paperDiscountAmount, double paperDiscountPercent, BigDecimal paperCosts, BigDecimal salaryCosts) {
+    public PressOffice(BigDecimal basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent) {
         this.basePaperPrice = basePaperPrice;
         this.priceIncreasePercent = priceIncreasePercent;
         this.managerBonusThreshold = managerBonusThreshold;
         this.employeeList = new ArrayList<>();
-        this.paperAmount = paperAmount;
+        this.paperAmount = new HashMap<>();
+        this.pressMachines = new ArrayList<>();
         this.paperDiscountAmount = paperDiscountAmount;
         this.paperDiscountPercent = paperDiscountPercent;
-        this.paperCosts = paperCosts;
-        this.salaryCosts = salaryCosts;
-        this.pressMachines = new ArrayList<>();
+        paperCosts = BigDecimal.ZERO;
+        salaryCosts = BigDecimal.ZERO;
+    }
+
+    public PressOffice() {
     }
 
     public BigDecimal getBasePaperPrice() {
