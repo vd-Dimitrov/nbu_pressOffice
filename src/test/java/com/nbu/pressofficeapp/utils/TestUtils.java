@@ -1,0 +1,27 @@
+package com.nbu.pressofficeapp.utils;
+
+import com.nbu.pressofficeapp.models.PressOffice;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+public class TestUtils {
+    public static  final String VALID_OFFICE_NAME = "TestOffice";
+    public static  final BigDecimal VALID_PAPER_PRICE = BigDecimal.ONE;
+    public static  final double VALID_PRICE_INCREASE = 1;
+    public static  final BigDecimal VALID_MANAGER_BONUS_THRESHOLD = BigDecimal.ONE;
+    public static  final int VALID_PAPER_DISCOUNT_AMOUNT = 10;
+    public static  final double VALID_PAPER_DISCOUNT_PERCENT = 10;
+
+    public static  final String  VALID_PAPER_PRICE_PARAMETER = "1";
+    public static  final String VALID_PRICE_INCREASE_PARAMETER = "1";
+    public static  final String VALID_MANAGER_BONUS_THRESHOLD_PARAMETER = "1";
+    public static  final String VALID_PAPER_DISCOUNT_AMOUNT_PARAMETER = "1";
+    public static  final String VALID_PAPER_DISCOUNT_PERCENT_PARAMETER = "1";
+
+    public static final List<String> VALID_OFFICE_CREATION_PARAMETERS = List.of(VALID_OFFICE_NAME,  VALID_PAPER_PRICE_PARAMETER, VALID_PRICE_INCREASE_PARAMETER, VALID_MANAGER_BONUS_THRESHOLD_PARAMETER, VALID_PAPER_DISCOUNT_AMOUNT_PARAMETER, VALID_PAPER_DISCOUNT_PERCENT_PARAMETER);
+
+
+
+
+}
