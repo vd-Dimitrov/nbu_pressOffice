@@ -90,8 +90,8 @@ public class PressOffice {
         return pressMachines;
     }
 
-    public void setPressMachines(List<PressMachine> pressMachines) {
-        this.pressMachines = pressMachines;
+    public void addPressMachine(PressMachine pressMachine) {
+        pressMachines.add(pressMachine);
     }
 
     public int getPaperDiscountAmount() {
