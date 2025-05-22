@@ -16,6 +16,7 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandType) {
             case CREATEOFFICE:
                 return new CreateOfficeCommand(pressOfficeRepository);
+
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandTypeAsString));
         }
