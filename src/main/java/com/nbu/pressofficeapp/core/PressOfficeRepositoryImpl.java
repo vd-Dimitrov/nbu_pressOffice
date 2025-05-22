@@ -1,6 +1,7 @@
 package com.nbu.pressofficeapp.core;
 
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;
+import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressOffice;
 
 import java.math.BigDecimal;
@@ -9,9 +10,11 @@ import java.util.List;
 
 public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     private final List<PressOffice> pressOffices;
+    private final List<Employee> employees;
 
     public PressOfficeRepositoryImpl() {
         this.pressOffices = new ArrayList<>();
+        this.employees = new ArrayList<>();
     }
 
     @Override
@@ -28,4 +31,15 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         return newPressOffice;
     }
 
+    @Override
+    public Employee createEmployee(String name, BigDecimal salary) {
+        Employee newEmployee = new Employee(name, salary);
+        employees.add(newEmployee);
+
+        return newEmployee;
+    }
+
+    public List<Employee> getEmployees() {
+        return new ArrayList<>(this.employees);
+    }
 }
