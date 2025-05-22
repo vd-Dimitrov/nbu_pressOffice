@@ -5,12 +5,14 @@ import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressOffice;
 
 import java.math.BigDecimal;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     private final List<PressOffice> pressOffices;
     private final List<Employee> employees;
+    private final String OFFICE_NOT_FOUND = "Office with name %s not found.";
 
     public PressOfficeRepositoryImpl() {
         this.pressOffices = new ArrayList<>();
@@ -37,6 +39,14 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         employees.add(newEmployee);
 
         return newEmployee;
+    }
+
+    @Override
+    public PressOffice findOfficeByName(String name) {
+        return pressOffices.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .orElseThrow( () -> new InvalidParameterException(String.format(OFFICE_NOT_FOUND, name)));
     }
 
     public List<Employee> getEmployees() {

@@ -2,5 +2,7 @@ package com.nbu.pressofficeapp.commands.enums;
 
 public enum CommandType {
     CREATEOFFICE, SHOWOFFICES,
-    CREATEPERSON, SHOWPERSON
+    CREATEPERSON, SHOWPERSON,
+    CREATEPRESSMACHINE
 }
+

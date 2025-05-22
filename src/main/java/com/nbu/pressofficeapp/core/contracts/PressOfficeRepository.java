@@ -12,4 +12,5 @@ public interface PressOfficeRepository {
      PressOffice createOffice(String name, BigDecimal basePaperPrice, double priceIncreasePercent,
                                     BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent);
      Employee createEmployee(String name, BigDecimal salary);
+     PressOffice findOfficeByName(String name);
 }
