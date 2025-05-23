@@ -13,4 +13,5 @@ public interface PressOfficeRepository {
                                     BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent);
      Employee createEmployee(String name, BigDecimal salary);
      PressOffice findOfficeByName(String name);
+     Employee findEmployeeById(long id);
 }

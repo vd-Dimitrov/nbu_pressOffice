@@ -74,8 +74,8 @@ public class PressOffice {
         return employeeList;
     }
 
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
+    public void addMember(Employee employee) {
+        employeeList.add(employee);
     }
 
     public Map<PaperType, Long> getPaperAmount() {

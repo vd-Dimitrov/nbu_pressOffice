@@ -1,6 +1,7 @@
 package com.nbu.pressofficeapp.core;
 
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;
+import com.nbu.pressofficeapp.exceptions.EntityNotFoundException;
 import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressOffice;
 
@@ -47,6 +48,14 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
                 .filter(p -> p.getName().equals(name))
                 .findFirst()
                 .orElseThrow( () -> new InvalidParameterException(String.format(OFFICE_NOT_FOUND, name)));
+    }
+
+    @Override
+    public Employee findEmployeeById(long id) {
+        return employees.stream()
+                .filter( e -> e.getId() == id)
+                .findFirst()
+                .orElseThrow( () -> new EntityNotFoundException("Employee", id));
     }
 
     public List<Employee> getEmployees() {
