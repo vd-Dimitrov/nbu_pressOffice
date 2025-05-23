@@ -1,4 +1,4 @@
-package com.nbu.pressofficeapp.commands.person;
+package com.nbu.pressofficeapp.commands.employee;
 
 import com.nbu.pressofficeapp.commands.BaseCommand;
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;
