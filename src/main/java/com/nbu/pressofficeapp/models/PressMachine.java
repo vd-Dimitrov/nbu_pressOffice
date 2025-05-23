@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public class PressMachine {
+    private final long id;
     private final int paperCapacity;
     private final int pagesPerMinute;
     private final boolean printsColored;
-    private final long id;
     private Map<String, Long> releasesPrinted;
     private static long idCounter;
 
@@ -50,5 +50,15 @@ public class PressMachine {
 
     public long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "PressMachine{" +
+                "id=" + id +
+                ", paperCapacity=" + paperCapacity +
+                ", pagesPerMinute=" + pagesPerMinute +
+                ", printsColored=" + printsColored +
+                '}';
     }
 }

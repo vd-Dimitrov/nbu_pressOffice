@@ -4,7 +4,7 @@ import com.nbu.pressofficeapp.commands.contracts.Command;
 import com.nbu.pressofficeapp.commands.enums.CommandType;
 import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
-import com.nbu.pressofficeapp.commands.person.CreateEmployeeCommand;
+import com.nbu.pressofficeapp.commands.employee.CreateEmployeeCommand;
 import com.nbu.pressofficeapp.commands.printer.CreatePressMachine;
 import com.nbu.pressofficeapp.core.contracts.CommandFactory;
 import com.nbu.pressofficeapp.utils.ParsingHelpers;
