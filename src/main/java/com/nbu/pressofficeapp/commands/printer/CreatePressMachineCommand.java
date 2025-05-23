@@ -8,11 +8,11 @@ import com.nbu.pressofficeapp.utils.ValidationHelpers;
 
 import java.util.List;
 
-public class CreatePressMachine extends BaseCommand {
+public class CreatePressMachineCommand extends BaseCommand {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 4;
     private static final String MACHINE_ADDED_SUCCESSFULLY = "Machine with id %d added successfully to office %s!";
 
-    public CreatePressMachine(PressOfficeRepository pressOfficeRepository) {
+    public CreatePressMachineCommand(PressOfficeRepository pressOfficeRepository) {
         super(pressOfficeRepository);
     }
 
