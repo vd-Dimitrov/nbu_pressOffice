@@ -1,6 +1,7 @@
 package com.nbu.pressofficeapp.core;
 
 import com.nbu.pressofficeapp.commands.contracts.Command;
+import com.nbu.pressofficeapp.commands.employee.FireEmployeeCommand;
 import com.nbu.pressofficeapp.commands.enums.CommandType;
 import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
@@ -28,6 +29,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreatePressMachineCommand(pressOfficeRepository);
             case ADDEMPLOYEETOOFFICE:
                 return new AddEmployeeToOfficeCommand(pressOfficeRepository);
+            case FIREEMPLOYEE:
+                return new FireEmployeeCommand(pressOfficeRepository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandTypeAsString));
         }
