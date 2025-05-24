@@ -21,7 +21,10 @@ public class TestUtils {
 
     public static final List<String> VALID_OFFICE_CREATION_PARAMETERS = List.of(VALID_OFFICE_NAME,  VALID_PAPER_PRICE_PARAMETER, VALID_PRICE_INCREASE_PARAMETER, VALID_MANAGER_BONUS_THRESHOLD_PARAMETER, VALID_PAPER_DISCOUNT_AMOUNT_PARAMETER, VALID_PAPER_DISCOUNT_PERCENT_PARAMETER);
 
-
+    public static final String VALID_EMPLOYEE_NAME = "Test Employee Name";
+    public static final BigDecimal VALID_EMPLOYEE_SALARY = BigDecimal.TEN;
+    public static final String VALID_EMPLOYEE_SALARY_PARAMETER = "10";
+    public static final List<String> VALID_EMPLOYEE_CREATION_PARAMETERS = List.of("Test", "Employee", "Name", VALID_EMPLOYEE_SALARY_PARAMETER);
 
 
 }
