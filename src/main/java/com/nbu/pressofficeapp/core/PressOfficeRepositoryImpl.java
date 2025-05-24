@@ -43,6 +43,15 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     }
 
     @Override
+    public void fireEmployee(String name){
+        Employee toBeRemoved = findEmployeeByName(name);
+        PressOffice pressOffice = toBeRemoved.getAssignedOffice();
+        toBeRemoved.setAssignedOffice(null);
+        toBeRemoved.setHasBeenFired(true);
+        pressOffice.removeMember(toBeRemoved);
+    }
+
+    @Override
     public PressOffice findOfficeByName(String name) {
         return pressOffices.stream()
                 .filter(p -> p.getName().equals(name))

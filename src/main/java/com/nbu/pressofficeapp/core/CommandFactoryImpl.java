@@ -6,7 +6,7 @@ import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
 import com.nbu.pressofficeapp.commands.employee.AddEmployeeToOfficeCommand;
 import com.nbu.pressofficeapp.commands.employee.CreateEmployeeCommand;
-import com.nbu.pressofficeapp.commands.printer.CreatePressMachineCommand;
+import com.nbu.pressofficeapp.commands.pressMachine.CreatePressMachineCommand;
 import com.nbu.pressofficeapp.core.contracts.CommandFactory;
 import com.nbu.pressofficeapp.utils.ParsingHelpers;
 

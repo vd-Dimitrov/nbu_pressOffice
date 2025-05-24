@@ -15,4 +15,5 @@ public interface PressOfficeRepository {
      PressOffice findOfficeByName(String name);
      Employee findEmployeeById(long id);
      Employee findEmployeeByName(String name);
+     void fireEmployee(String name);
 }
