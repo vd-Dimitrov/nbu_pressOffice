@@ -58,6 +58,14 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
                 .orElseThrow( () -> new EntityNotFoundException("Employee", id));
     }
 
+    @Override
+    public Employee findEmployeeByName(String name) {
+        return employees.stream()
+                .filter(e -> e.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseThrow( () -> new EntityNotFoundException("Employee", "name", name));
+    }
+
     public List<Employee> getEmployees() {
         return new ArrayList<>(this.employees);
     }

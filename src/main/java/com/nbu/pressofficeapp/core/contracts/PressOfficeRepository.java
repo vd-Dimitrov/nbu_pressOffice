@@ -14,4 +14,5 @@ public interface PressOfficeRepository {
      Employee createEmployee(String name, BigDecimal salary);
      PressOffice findOfficeByName(String name);
      Employee findEmployeeById(long id);
+     Employee findEmployeeByName(String name);
 }

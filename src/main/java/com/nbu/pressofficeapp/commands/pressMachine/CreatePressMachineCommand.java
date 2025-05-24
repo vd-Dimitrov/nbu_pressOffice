@@ -1,4 +1,4 @@
-package com.nbu.pressofficeapp.commands.printer;
+package com.nbu.pressofficeapp.commands.pressMachine;
 
 import com.nbu.pressofficeapp.commands.BaseCommand;
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;

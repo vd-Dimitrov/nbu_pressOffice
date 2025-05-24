@@ -13,7 +13,7 @@ public class AddEmployeeToOfficeCommand extends BaseCommand {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String PERSON_IS_ALREADY_A_MEMBER_OF_OFFICE = "The person is already a member of an office!";
     public static final String EMPLOYEE_SUCCESSFULLY_ADDED = "%s was successfully added to office %s";
-
+    public static final String EMPLOYEE_SUCESSFULLY_MOVED = "%s was successfully moved from office %s to office %s";
     public AddEmployeeToOfficeCommand(PressOfficeRepository pressOfficeRepository) {
         super(pressOfficeRepository);
     }
@@ -40,11 +40,20 @@ public class AddEmployeeToOfficeCommand extends BaseCommand {
     }
 
     private String addPersonToOffice(long employeeId, String officeName) {
-        Employee newEmployee = getPressOfficeRepository().findEmployeeById(employeeId);
-
+        Employee soughtEmployee = getPressOfficeRepository().findEmployeeById(employeeId);
         PressOffice soughtOffice = getPressOfficeRepository().findOfficeByName(officeName);
-        soughtOffice.addMember(newEmployee);
 
-        return String.format(EMPLOYEE_SUCCESSFULLY_ADDED, newEmployee.getName(), officeName);
+        if (soughtEmployee.getAssignedOffice() != null && !soughtEmployee.getAssignedOffice().equals(soughtOffice)) {
+            PressOffice originalOffice = soughtEmployee.getAssignedOffice();
+            originalOffice.removeMember(soughtEmployee);
+            soughtOffice.addMember(soughtEmployee);
+
+            return String.format(EMPLOYEE_SUCESSFULLY_MOVED, soughtEmployee.getName(), originalOffice.getName(), officeName);
+        }
+        else {
+            soughtOffice.addMember(soughtEmployee);
+
+            return String.format(EMPLOYEE_SUCCESSFULLY_ADDED, soughtEmployee.getName(), officeName);
+        }
     }
 }

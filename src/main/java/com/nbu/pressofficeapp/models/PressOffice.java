@@ -78,6 +78,10 @@ public class PressOffice {
         employeeList.add(employee);
     }
 
+    public void removeMember(Employee employee){
+        employeeList.remove(employee);
+    }
+
     public Map<PaperType, Long> getPaperAmount() {
         return paperAmount;
     }
