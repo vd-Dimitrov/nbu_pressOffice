@@ -9,19 +9,22 @@ import java.util.List;
 import java.util.Map;
 
 public class PressOffice {
+    public static final String PAPER_SUCCESSFULLY_MODIFIED = "Paper successfully modified, new total: %d";
+    public static final String NOT_ENOUGH_PAPER = "Not enough paper.";
+
     private String name;
-    private BigDecimal basePaperPrice;
+    private Map<PaperType, BigDecimal> basePaperPrice;
     private double priceIncreasePercent;
     private BigDecimal managerBonusThreshold;
     private List<Employee> employeeList;
-    private Map<PaperType, Long> paperAmount;
+    private Map<Paper, Long> paperAmount;
     private List<PressMachine> pressMachines;
     private int paperDiscountAmount;
     private double paperDiscountPercent;
     private BigDecimal paperCosts;
     private BigDecimal salaryCosts;
 
-    public PressOffice(String name, BigDecimal basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent) {
+    public PressOffice(String name, Map<PaperType, BigDecimal> basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent) {
         this.name = name;
         this.basePaperPrice = basePaperPrice;
         this.priceIncreasePercent = priceIncreasePercent;
@@ -46,12 +49,12 @@ public class PressOffice {
         this.name = name;
     }
 
-    public BigDecimal getBasePaperPrice() {
+    public Map<PaperType, BigDecimal> getBasePaperPrice() {
         return basePaperPrice;
     }
 
-    public void setBasePaperPrice(BigDecimal basePaperPrice) {
-        this.basePaperPrice = basePaperPrice;
+    public void setBasePaperPrice(PaperType paper, BigDecimal basePaperPrice) {
+        this.basePaperPrice.put(paper, basePaperPrice);
     }
 
     public double getPriceIncreasePercent() {
@@ -82,14 +85,35 @@ public class PressOffice {
         employeeList.remove(employee);
     }
 
-    public Map<PaperType, Long> getPaperAmount() {
+    public Map<Paper, Long> getPaperAmount() {
         return paperAmount;
     }
-
-    public void setPaperAmount(Map<PaperType, Long> paperAmount) {
-        this.paperAmount = paperAmount;
+    public String addPaper(Paper paper, long inputAmount){
+        if (paperAmount.containsKey(paper)){
+            paperAmount.compute(paper, (k, oldAmount) -> (oldAmount == null) ? inputAmount : inputAmount + oldAmount);
+        } else {
+            paperAmount.putIfAbsent(paper, inputAmount);
+        }
+        return String.format(PAPER_SUCCESSFULLY_MODIFIED, paperAmount.get(paper));
     }
 
+    public String removePaper(Paper paper, long inputAmount){
+        try {
+            if (paperAmount.containsKey(paper)) {
+                long oldAmount = paperAmount.get(paper);
+                if (oldAmount - inputAmount < 0) {
+                    return NOT_ENOUGH_PAPER;
+                }
+                long newAmount = oldAmount - inputAmount;
+                paperAmount.put(paper, newAmount);
+                return String.format(PAPER_SUCCESSFULLY_MODIFIED, newAmount);
+            } else {
+                return "No such paper type!";
+            }
+        } catch (NullPointerException e){
+            return NOT_ENOUGH_PAPER;
+        }
+    }
     public List<PressMachine> getPressMachines() {
         return pressMachines;
     }
@@ -120,6 +144,11 @@ public class PressOffice {
 
     public void setPaperCosts(BigDecimal paperCosts) {
         this.paperCosts = paperCosts;
+    }
+
+    public void increasePaperCosts(BigDecimal paperCosts){
+        BigDecimal currentPaperCosts = getPaperCosts();
+        setPaperCosts(currentPaperCosts.add(paperCosts));
     }
 
     public BigDecimal getSalaryCosts() {

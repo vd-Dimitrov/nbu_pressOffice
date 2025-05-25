@@ -7,9 +7,9 @@ public enum PaperSize {
     A2(3),
     A1(4);
 
-    public final int sizeMod;
+    public final double sizeMod;
 
-    private PaperSize(int sizeMod){
+    private PaperSize(double sizeMod){
         this.sizeMod = sizeMod;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShowOfficesCommand extends BaseCommand{
-    private static final int EXPECTED_ARGUMENTS = 0;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 0;
     private static final String NEW_LINE_DELIMITER = "\n";
     private static final String NO_OFFICES_ERROR ="No offices in the system!";
 
@@ -20,7 +20,7 @@ public class ShowOfficesCommand extends BaseCommand{
 
     @Override
     protected String executeCommand(List<String> parameters) {
-        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_ARGUMENTS);
+        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
         ParsingHelpers.checkIfCollectionEmpty(getPressOfficeRepository().getOffices(), NO_OFFICES_ERROR);
 
