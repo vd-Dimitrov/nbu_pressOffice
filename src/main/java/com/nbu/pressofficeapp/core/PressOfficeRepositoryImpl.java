@@ -3,12 +3,15 @@ package com.nbu.pressofficeapp.core;
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;
 import com.nbu.pressofficeapp.exceptions.EntityNotFoundException;
 import com.nbu.pressofficeapp.models.Employee;
+import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.PressOffice;
 
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     private final List<PressOffice> pressOffices;
@@ -50,6 +53,18 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         toBeRemoved.setHasBeenFired(true);
         pressOffice.removeMember(toBeRemoved);
     }
+
+    @Override
+    public PressMachine findPressMachineById(long id) {
+        return pressOffices.stream()
+                .map(PressOffice::getPressMachines)
+                .flatMap(Collection::stream)
+                .filter( pressMachine -> pressMachine.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Press machine", id ));
+
+    }
+
 
     @Override
     public PressOffice findOfficeByName(String name) {

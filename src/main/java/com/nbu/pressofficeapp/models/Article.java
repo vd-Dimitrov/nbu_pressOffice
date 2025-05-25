@@ -1,18 +1,18 @@
 package com.nbu.pressofficeapp.models;
 
 import com.nbu.pressofficeapp.models.enums.PaperType;
-import com.nbu.pressofficeapp.models.enums.Size;
+import com.nbu.pressofficeapp.models.enums.PaperSize;
 
 public class Article {
     private String articleType;
     private long amount;
-    private Size articleSize;
+    private PaperSize articlePaperSize;
     private PaperType paperType;
 
-    public Article(String articleType, long amount, Size articleSize, PaperType paperType) {
+    public Article(String articleType, long amount, PaperSize articlePaperSize, PaperType paperType) {
         this.articleType = articleType;
         this.amount = amount;
-        this.articleSize = articleSize;
+        this.articlePaperSize = articlePaperSize;
         this.paperType = paperType;
     }
 
@@ -32,12 +32,12 @@ public class Article {
         this.amount = amount;
     }
 
-    public Size getArticleSize() {
-        return articleSize;
+    public PaperSize getArticleSize() {
+        return articlePaperSize;
     }
 
-    public void setArticleSize(Size articleSize) {
-        this.articleSize = articleSize;
+    public void setArticleSize(PaperSize articlePaperSize) {
+        this.articlePaperSize = articlePaperSize;
     }
 
     public PaperType getPaperType() {

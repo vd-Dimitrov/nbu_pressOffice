@@ -1,6 +1,7 @@
 package com.nbu.pressofficeapp.core.contracts;
 
 import com.nbu.pressofficeapp.models.Employee;
+import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.PressOffice;
 
 import java.math.BigDecimal;
@@ -16,4 +17,6 @@ public interface PressOfficeRepository {
      Employee findEmployeeById(long id);
      Employee findEmployeeByName(String name);
      void fireEmployee(String name);
+
+     PressMachine findPressMachineById(long id);
 }
