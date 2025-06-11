@@ -25,7 +25,6 @@ public class CreateOfficeCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
 
-        ValidationHelpers.validateArgumentsCount(parameters, 6);
 
         return createOffice(parameters);    }
 

@@ -5,12 +5,14 @@ import com.nbu.pressofficeapp.exceptions.EntityNotFoundException;
 import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.PressOffice;
+import com.nbu.pressofficeapp.models.enums.PaperType;
 
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PressOfficeRepositoryImpl implements PressOfficeRepository {
@@ -28,8 +30,10 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         return new ArrayList<>(this.pressOffices);
     }
 
+
+
     @Override
-    public PressOffice createOffice(String name, BigDecimal basePaperPrice, double priceIncreasePercent,
+    public PressOffice createOffice(String name, Map<PaperType, BigDecimal> basePaperPrice, double priceIncreasePercent,
                                     BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent){
         PressOffice newPressOffice = new PressOffice(name, basePaperPrice, priceIncreasePercent, managerBonusThreshold, paperDiscountAmount, paperDiscountPercent);
         pressOffices.add(newPressOffice);

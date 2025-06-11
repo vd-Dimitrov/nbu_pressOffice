@@ -35,7 +35,7 @@ public class CreateOfficeCommandTests {
     @Test
     public void should_ThrowException_When_OfficeAlreadyExists(){
         String existingOfficeName = VALID_OFFICE_NAME;
-        pressOfficeRepository.createOffice(VALID_OFFICE_NAME, VALID_PAPER_PRICE, VALID_PRICE_INCREASE, VALID_MANAGER_BONUS_THRESHOLD, VALID_PAPER_DISCOUNT_AMOUNT, VALID_PAPER_DISCOUNT_PERCENT );
+        pressOfficeRepository.createOffice(VALID_OFFICE_NAME, VALID_BASE_PAPER_PRICES, VALID_PRICE_INCREASE, VALID_MANAGER_BONUS_THRESHOLD, VALID_PAPER_DISCOUNT_AMOUNT, VALID_PAPER_DISCOUNT_PERCENT );
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> createOfficeCommand.throwsIfOfficeExists(existingOfficeName));
     }
