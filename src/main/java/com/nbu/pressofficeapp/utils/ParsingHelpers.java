@@ -1,6 +1,8 @@
 package com.nbu.pressofficeapp.utils;
 
 import java.math.BigDecimal;
+import java.time.DateTimeException;
+import java.time.YearMonth;
 import java.util.List;
 
 public class ParsingHelpers {
@@ -45,5 +47,14 @@ public class ParsingHelpers {
         if (collection == null || collection.isEmpty()) {
             throw new IllegalArgumentException(String.format(errorMessage));
         }
+    }
+    public static YearMonth tryParseYearMonth(String unformattedYearMonth){
+        try{
+            String[] separatedYearMonth = unformattedYearMonth.split("\\.");
+            return YearMonth.of(Integer.parseInt(separatedYearMonth[0]), Integer.parseInt(separatedYearMonth[1]));
+        } catch (DateTimeException e){
+            throw new IllegalArgumentException(String.format(INVALID_VALUE_TYPE, unformattedYearMonth));
+        }
+
     }
 }

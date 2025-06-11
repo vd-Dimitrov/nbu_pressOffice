@@ -8,7 +8,7 @@ import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.StockUpPapersCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficeFinanceCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
-import com.nbu.pressofficeapp.commands.employee.AddEmployeeToOfficeCommand;
+import com.nbu.pressofficeapp.commands.employee.AssignEmployeeCommand;
 import com.nbu.pressofficeapp.commands.employee.CreateEmployeeCommand;
 import com.nbu.pressofficeapp.commands.pressMachine.CreatePressMachineCommand;
 import com.nbu.pressofficeapp.commands.pressMachine.LoadPressMachineCommand;
@@ -33,8 +33,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowOfficesCommand(pressOfficeRepository);
             case CREATEPRESSMACHINE:
                 return new CreatePressMachineCommand(pressOfficeRepository);
-            case ADDEMPLOYEETOOFFICE:
-                return new AddEmployeeToOfficeCommand(pressOfficeRepository);
+            case ASSIGNEMPLOYEETOOFFICE:
+                return new AssignEmployeeCommand(pressOfficeRepository);
             case FIREEMPLOYEE:
                 return new FireEmployeeCommand(pressOfficeRepository);
             case STOCKUPPAPERS:

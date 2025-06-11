@@ -3,6 +3,8 @@ package com.nbu.pressofficeapp.models;
 import com.nbu.pressofficeapp.models.enums.PaperType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +23,8 @@ public class PressOffice {
     private List<PressMachine> pressMachines;
     private int paperDiscountAmount;
     private double paperDiscountPercent;
-    private BigDecimal paperCosts;
-    private BigDecimal salaryCosts;
+    private Map<YearMonth, BigDecimal> monthlyPaperCosts;
+    private Map<YearMonth, BigDecimal> monthlySalaryCosts;
 
     public PressOffice(String name, Map<PaperType, BigDecimal> basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent) {
         this.name = name;
@@ -34,8 +36,8 @@ public class PressOffice {
         this.pressMachines = new ArrayList<>();
         this.paperDiscountAmount = paperDiscountAmount;
         this.paperDiscountPercent = paperDiscountPercent;
-        paperCosts = BigDecimal.ZERO;
-        salaryCosts = BigDecimal.ZERO;
+        monthlyPaperCosts = new HashMap<>();
+        monthlySalaryCosts = new HashMap<>();
     }
 
     public PressOffice() {
@@ -114,6 +116,7 @@ public class PressOffice {
             return NOT_ENOUGH_PAPER;
         }
     }
+
     public List<PressMachine> getPressMachines() {
         return pressMachines;
     }
@@ -138,24 +141,23 @@ public class PressOffice {
         this.paperDiscountPercent = paperDiscountPercent;
     }
 
-    public BigDecimal getPaperCosts() {
-        return paperCosts;
+    public Map<YearMonth, BigDecimal> getMonthlyPaperCosts() {
+        return monthlyPaperCosts;
     }
 
-    public void setPaperCosts(BigDecimal paperCosts) {
-        this.paperCosts = paperCosts;
+    public void setMonthlyPaperCosts(YearMonth date, BigDecimal monthlyPaperCosts) {
+        this.monthlyPaperCosts.put(date, monthlyPaperCosts);
     }
 
     public void increasePaperCosts(BigDecimal paperCosts){
-        BigDecimal currentPaperCosts = getPaperCosts();
-        setPaperCosts(currentPaperCosts.add(paperCosts));
+        setMonthlyPaperCosts(YearMonth.now(), monthlyPaperCosts.get(YearMonth.now()).add(paperCosts));
     }
 
-    public BigDecimal getSalaryCosts() {
-        return salaryCosts;
+    public Map<YearMonth, BigDecimal> getMonthlySalaryCosts() {
+        return monthlySalaryCosts;
     }
 
-    public void setSalaryCosts(BigDecimal salaryCosts) {
-        this.salaryCosts = salaryCosts;
+    public void setMonthlySalaryCosts(YearMonth date, BigDecimal monthlySalaryCosts) {
+        this.monthlySalaryCosts.put(date, monthlySalaryCosts);
     }
 }

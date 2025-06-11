@@ -3,6 +3,7 @@ package com.nbu.pressofficeapp.commands.office.view;
 import com.nbu.pressofficeapp.commands.BaseCommand;
 import com.nbu.pressofficeapp.core.contracts.PressOfficeRepository;
 import com.nbu.pressofficeapp.models.PressOffice;
+import com.nbu.pressofficeapp.utils.ParsingHelpers;
 import com.nbu.pressofficeapp.utils.ValidationHelpers;
 
 import java.math.BigDecimal;
@@ -10,11 +11,11 @@ import java.text.DecimalFormat;
 import java.time.YearMonth;
 import java.util.List;
 
-public class ShowOfficeFinanceCommand extends BaseCommand {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
+public class ShowOfficeFinancePastCommand extends BaseCommand {
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     private static final String FINANCE_INFORMATION_MESSAGE = "Office %s costs are %s";
     private static final DecimalFormat df = new DecimalFormat("#,###.00");
-    public ShowOfficeFinanceCommand(PressOfficeRepository pressOfficeRepository) {
+    public ShowOfficeFinancePastCommand(PressOfficeRepository pressOfficeRepository) {
         super(pressOfficeRepository);
     }
 
@@ -22,9 +23,10 @@ public class ShowOfficeFinanceCommand extends BaseCommand {
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
+        YearMonth soughtYearMonth = ParsingHelpers.tryParseYearMonth(parameters.get(0));
         PressOffice pressOffice = getPressOfficeRepository().findOfficeByName(parameters.get(0));
-        BigDecimal paperCosts = pressOffice.getMonthlyPaperCosts().get(YearMonth.now());
-        BigDecimal salaryCosts = pressOffice.getMonthlySalaryCosts().get(YearMonth.now());
+        BigDecimal paperCosts = pressOffice.getMonthlyPaperCosts().get(soughtYearMonth);
+        BigDecimal salaryCosts = pressOffice.getMonthlySalaryCosts().get(soughtYearMonth);
 
 
         BigDecimal totalCosts = salaryCosts.add(paperCosts);

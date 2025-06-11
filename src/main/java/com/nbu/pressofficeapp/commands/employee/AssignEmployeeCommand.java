@@ -9,13 +9,13 @@ import com.nbu.pressofficeapp.utils.ValidationHelpers;
 
 import java.util.List;
 
-public class AddEmployeeToOfficeCommand extends BaseCommand {
+public class AssignEmployeeCommand extends BaseCommand {
     private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
     private static final String PERSON_IS_ALREADY_A_MEMBER_OF_OFFICE = "The person is already a member of an office!";
     public static final String EMPLOYEE_SUCCESSFULLY_ADDED = "%s was successfully added to office %s";
     public static final String EMPLOYEE_SUCCESSFULLY_MOVED = "%s was successfully moved from office %s to office %s";
-    public AddEmployeeToOfficeCommand(PressOfficeRepository pressOfficeRepository) {
+    public AssignEmployeeCommand(PressOfficeRepository pressOfficeRepository) {
         super(pressOfficeRepository);
     }
 

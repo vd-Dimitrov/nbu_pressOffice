@@ -14,7 +14,7 @@ public enum CommandType {
 
     CREATEPERSON("CREATEPERSON: Used to add a person to the repository. Requires their three names and salary"),
     SHOWPERSON("SHOWPERSON: Will be used to show information about a single employee. Requires their name\n"),
-    ADDEMPLOYEETOOFFICE("ADDEMPLOYEETOOFFICE: Assigns an employee to an office. Requires employee id and office name"),
+    ASSIGNEMPLOYEETOOFFICE("ASSIGNEMPLOYEETOOFFICE: Assigns an employee to an office. Requires employee id and office name"),
     FIREEMPLOYEE ("FIREEMPLOYEE: Removes employee from all offices and sets them as fired. Requires employee name"),
     CREATEPRESSMACHINE ("CREATEPRESSMACHINE: Creates a press machine. Requires the following parameters: " +
             "paper capacity, the amount of pages per minute it prints, supported paper type and size," +

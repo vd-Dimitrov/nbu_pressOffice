@@ -1,6 +1,9 @@
 package com.nbu.pressofficeapp.utils;
 
 import com.nbu.pressofficeapp.exceptions.InvalidValueException;
+import com.nbu.pressofficeapp.models.PressMachine;
+import com.nbu.pressofficeapp.models.enums.PaperType;
+import com.nbu.pressofficeapp.models.enums.PaperSize;
 
 import java.util.List;
 
@@ -24,5 +27,9 @@ public class ValidationHelpers {
         if (value < min || value > max) {
             throw new IllegalArgumentException(message);
         }
+    }
+
+    public static void validatePressMachineRequest(PressMachine pressMachine, PaperType paperType, PaperSize paperSize){
+        
     }
 }
