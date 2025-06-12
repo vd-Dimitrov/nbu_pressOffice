@@ -23,12 +23,12 @@ public class LoadPressMachineCommand extends BaseCommand {
         PressMachine pressMachine = getPressOfficeRepository().findPressMachineById(pressMachineId);
         PressOffice pressOffice = pressMachine.getCurrentLocation();
         Paper supportedPaper = pressMachine.getSupportedPaper();
-        int paperAmount = ParsingHelpers.tryParseInteger(parameters.get(1));
+        long paperAmount = ParsingHelpers.tryParseInteger(parameters.get(1));
         if (paperAmount > pressOffice.getPaperAmount().get(supportedPaper)){
             return "Not enough paper available";
         }
         else if (paperAmount + pressMachine.getCurrentPaperCount() > pressMachine.getPaperCapacity()){
-            int loadedPaper = pressMachine.getPaperCapacity() - pressMachine.getCurrentPaperCount();
+            long loadedPaper = pressMachine.getPaperCapacity() - pressMachine.getCurrentPaperCount();
             pressMachine.setCurrentPaperCount(pressMachine.getPaperCapacity());
             pressOffice.removePaper(supportedPaper, loadedPaper);
 

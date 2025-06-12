@@ -3,6 +3,7 @@ package com.nbu.pressofficeapp.utils;
 import com.nbu.pressofficeapp.exceptions.DuplicateEntityException;
 import com.nbu.pressofficeapp.exceptions.InvalidValueException;
 import com.nbu.pressofficeapp.models.Employee;
+import com.nbu.pressofficeapp.models.Paper;
 import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.enums.PaperType;
 import com.nbu.pressofficeapp.models.enums.PaperSize;
@@ -31,8 +32,12 @@ public class ValidationHelpers {
         }
     }
 
-    public static void validatePressMachineRequest(PressMachine pressMachine, PaperType paperType, PaperSize paperSize){
-        
+    public static void validatePressMachineRequest(PressMachine pressMachine, Paper supportedPaper, boolean coloredPrint){
+        if (!pressMachine.getSupportedPaper().equals(supportedPaper)){
+            throw new InvalidValueException(supportedPaper.toString(), pressMachine.toString(), "unsupported paper");
+        } else if (!pressMachine.isPrintsColored() && coloredPrint) {
+            throw new InvalidValueException("This printer does not support colored printing");
+        }
     }
 
     public static boolean validateUniqueEmployee(List<Employee> employees, Employee checkedEmployee){

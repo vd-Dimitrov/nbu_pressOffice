@@ -42,7 +42,6 @@ public class ParsingHelpers {
     public static BigDecimal tryParseBigDecimal(String valueToParse){
             return BigDecimal.valueOf(tryParseDouble(valueToParse));
     }
-
     public static <E> void checkIfCollectionEmpty(List<E> collection, String errorMessage){
         if (collection == null || collection.isEmpty()) {
             throw new IllegalArgumentException(String.format(errorMessage));

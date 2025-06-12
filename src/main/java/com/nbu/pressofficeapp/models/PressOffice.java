@@ -1,5 +1,6 @@
 package com.nbu.pressofficeapp.models;
 
+import com.nbu.pressofficeapp.exceptions.InvalidValueException;
 import com.nbu.pressofficeapp.models.enums.PaperType;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.util.*;
 public class PressOffice {
     public static final String PAPER_SUCCESSFULLY_MODIFIED = "Paper successfully modified, new total: %d";
     public static final String NOT_ENOUGH_PAPER = "Not enough paper.";
+    public static Calendar calendar;
 
     private String name;
     private Map<PaperType, BigDecimal> basePaperPrice;
@@ -22,6 +24,7 @@ public class PressOffice {
     private double paperDiscountPercent;
     private Map<YearMonth, BigDecimal> monthlyPaperCosts;
     private Map<YearMonth, BigDecimal> monthlySalaryCosts;
+    private Map<YearMonth, BigDecimal> monthlyRevenue;
 
     public PressOffice(String name, Map<PaperType, BigDecimal> basePaperPrice, double priceIncreasePercent, BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent) {
         this.name = name;
@@ -34,7 +37,12 @@ public class PressOffice {
         this.paperDiscountAmount = paperDiscountAmount;
         this.paperDiscountPercent = paperDiscountPercent;
         monthlyPaperCosts = new HashMap<>();
+        monthlyPaperCosts.put(YearMonth.now(), BigDecimal.ZERO);
         monthlySalaryCosts = new HashMap<>();
+        monthlySalaryCosts.put(YearMonth.now(), BigDecimal.ZERO);
+        monthlyRevenue = new HashMap<>();
+        monthlyRevenue.put(YearMonth.now(), BigDecimal.ZERO);
+
     }
 
     public PressOffice() {
@@ -109,9 +117,19 @@ public class PressOffice {
             } else {
                 return "No such paper type!";
             }
-        } catch (NullPointerException e){
+        } catch (InvalidValueException e){
             return NOT_ENOUGH_PAPER;
         }
+    }
+
+    public void sellArticle(long amount, Paper paper){
+        BigDecimal pricePerPaper = basePaperPrice.get(paper.paperType);
+        double priceSizeIncrease = paper.paperSize.sizeMod * priceIncreasePercent;
+        pricePerPaper = pricePerPaper.multiply(BigDecimal.valueOf(priceSizeIncrease));
+        BigDecimal totalOrderPrice = pricePerPaper.multiply(BigDecimal.valueOf(amount));
+        BigDecimal totalValueThisMonth = monthlyPaperCosts.get(YearMonth.now()).add(totalOrderPrice);
+
+        setMonthlyRevenue(YearMonth.now(), totalValueThisMonth);
     }
 
     public List<PressMachine> getPressMachines() {
@@ -156,6 +174,14 @@ public class PressOffice {
 
     public void setMonthlySalaryCosts(YearMonth date, BigDecimal monthlySalaryCosts) {
         this.monthlySalaryCosts.put(date, monthlySalaryCosts);
+    }
+
+    public BigDecimal getMonthlyRevenue(YearMonth date) {
+        return monthlyRevenue.get(date);
+    }
+
+    public void setMonthlyRevenue(YearMonth date, BigDecimal monthlyRevenue) {
+        this.monthlyRevenue.put(date, monthlyRevenue);
     }
 
     @Override

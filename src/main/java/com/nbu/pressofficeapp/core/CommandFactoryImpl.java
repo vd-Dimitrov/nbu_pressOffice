@@ -36,9 +36,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreatePressMachineCommand(pressOfficeRepository);
             case ASSIGNEMPLOYEETOOFFICE:
                 return new AssignEmployeeCommand(pressOfficeRepository);
-            case FIREEMPLOYEE:
-                return new FireEmployeeCommand(pressOfficeRepository);
-            case STOCKUPPAPERS:
+                case STOCKUPPAPERS:
                 return new StockUpPapersCommand(pressOfficeRepository);
             case LOADPRESSMACHINE:
                 return new LoadPressMachineCommand(pressOfficeRepository);

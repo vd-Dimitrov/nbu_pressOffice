@@ -13,7 +13,7 @@ import com.nbu.pressofficeapp.utils.ValidationHelpers;
 import java.util.List;
 
 public class CreatePressMachineCommand extends BaseCommand {
-    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 5;
+    private static final int EXPECTED_NUMBER_OF_ARGUMENTS = 6;
     private static final String MACHINE_ADDED_SUCCESSFULLY = "Machine with id %d added successfully to office %s!";
     private static final String INVALID_PAPER_TYPE = "%s is not a valid paper type!";
     private static final String INVALID_PAPER_SIZE = "%s is not a valid paper size!";
@@ -39,7 +39,7 @@ public class CreatePressMachineCommand extends BaseCommand {
         Paper supportedPaper = new Paper(supportedPaperType, supportedPaperPaperSize);
         boolean printsColored = Boolean.parseBoolean(parameters.get(4));
 
-        PressOffice soughtOffice = getPressOfficeRepository().findOfficeByName(parameters.get(3));
+        PressOffice soughtOffice = getPressOfficeRepository().findOfficeByName(parameters.get(5));
         PressMachine newMachine =  new PressMachine(paperCapacity, pagesPerMinute, supportedPaper, printsColored, soughtOffice);
 
         soughtOffice.addPressMachine(newMachine);

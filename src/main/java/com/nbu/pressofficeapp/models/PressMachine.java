@@ -12,7 +12,7 @@ public class PressMachine {
     private final int pagesPerMinute;
     private final Paper supportedPaper;
     private final boolean printsColored;
-    private int currentPaperCount;
+    private long currentPaperCount;
     private PressOffice currentLocation;
     private Map<String, Long> releasesPrinted;
     private static long idCounter;
@@ -45,8 +45,8 @@ public class PressMachine {
         return releasesPrinted;
     }
 
-    public void setReleasesPrinted(Map<String, Long> releasesPrinted) {
-        this.releasesPrinted = releasesPrinted;
+    public void setReleasesPrinted(String release, long amount) {
+        releasesPrinted.put(release, amount);
     }
 
     public long pagesPrinted(){
@@ -72,15 +72,15 @@ public class PressMachine {
         return supportedPaper;
     }
 
-    public int getCurrentPaperCount() {
+    public long getCurrentPaperCount() {
         return currentPaperCount;
     }
 
-    public void setCurrentPaperCount(int currentPaperCount) {
+    public void setCurrentPaperCount(long currentPaperCount) {
         this.currentPaperCount = currentPaperCount;
     }
 
-    public void loadPaper(int loadedPaper){
+    public void loadPaper(long loadedPaper){
         if (loadedPaper + currentPaperCount > paperCapacity){
             currentPaperCount = paperCapacity;
         }

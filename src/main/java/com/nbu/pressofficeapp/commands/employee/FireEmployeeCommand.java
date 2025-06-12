@@ -20,7 +20,7 @@ public class FireEmployeeCommand extends BaseCommand {
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
 
-        String employeeName = parameters.get(0) + " " + parameters.get(1) + parameters.get(2);
+        String employeeName = parameters.get(0) + " " + parameters.get(1) + " " + parameters.get(2);
         throwIfEmployeeIsNotInOffice(employeeName);
 
 

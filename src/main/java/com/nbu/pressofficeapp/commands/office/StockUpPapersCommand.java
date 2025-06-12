@@ -33,10 +33,7 @@ public class StockUpPapersCommand extends BaseCommand {
         PressOffice soughtOffice = getPressOfficeRepository().findOfficeByName(officeName);
         BigDecimal paperPrice = soughtOffice.getBasePaperPrice().get(paperType);
         BigDecimal totalPaperExpense = paperPrice.multiply(BigDecimal.valueOf(paperAmount));
-        if (paperSize != PaperSize.A5){
-            double paperPriceSizeIncrease = paperSize.sizeMod * soughtOffice.getPriceIncreasePercent() * 0.01;
-            totalPaperExpense = totalPaperExpense.add(totalPaperExpense.multiply(BigDecimal.valueOf(paperPriceSizeIncrease)));
-        }
+
 
         soughtOffice.increasePaperCosts(totalPaperExpense);
         return soughtOffice.addPaper(paper, paperAmount);

@@ -11,7 +11,7 @@ public class Employee implements Serializable {
     private boolean hasBeenFired;
     private BigDecimal salary;
     private transient PressOffice assignedOffice;
-    private static long idCounter;
+    private static long idCounter = 1;
 
     public Employee(String name, BigDecimal salary) {
 
@@ -89,7 +89,7 @@ public class Employee implements Serializable {
                 ", isManager=" + isManager +
                 ", hasBeenFired=" + hasBeenFired +
                 ", salary=" + salary +
-                ", assignedOffice=" + assignedOffice.getName() +
-                '}';
+                ", assignedOffice=" + assignedOffice +
+                '}' +'\n';
     }
 }
