@@ -5,10 +5,7 @@ import com.nbu.pressofficeapp.models.enums.PaperType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PressOffice {
     public static final String PAPER_SUCCESSFULLY_MODIFIED = "Paper successfully modified, new total: %d";
@@ -159,5 +156,32 @@ public class PressOffice {
 
     public void setMonthlySalaryCosts(YearMonth date, BigDecimal monthlySalaryCosts) {
         this.monthlySalaryCosts.put(date, monthlySalaryCosts);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        PressOffice that = (PressOffice) o;
+        return Double.compare(priceIncreasePercent, that.priceIncreasePercent) == 0 && paperDiscountAmount == that.paperDiscountAmount && Double.compare(paperDiscountPercent, that.paperDiscountPercent) == 0 && Objects.equals(name, that.name) && Objects.equals(basePaperPrice, that.basePaperPrice) && Objects.equals(managerBonusThreshold, that.managerBonusThreshold) && Objects.equals(employeeList, that.employeeList) && Objects.equals(paperAmount, that.paperAmount) && Objects.equals(pressMachines, that.pressMachines) && Objects.equals(monthlyPaperCosts, that.monthlyPaperCosts) && Objects.equals(monthlySalaryCosts, that.monthlySalaryCosts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, basePaperPrice, priceIncreasePercent, managerBonusThreshold, employeeList, paperAmount, pressMachines, paperDiscountAmount, paperDiscountPercent, monthlyPaperCosts, monthlySalaryCosts);
+    }
+
+    @Override
+    public String toString() {
+        return "PressOffice{" +
+                "name='" + name + '\'' + '\n' +
+                "basePaperPrice=" + basePaperPrice + '\n' +
+                "priceIncreasePercent=" + priceIncreasePercent + '\n' +
+                "managerBonusThreshold=" + managerBonusThreshold + '\n' +
+                "paperAmount=" + paperAmount + '\n' +
+                "paperDiscountAmount=" + paperDiscountAmount + '\n' +
+                "paperDiscountPercent=" + paperDiscountPercent + '\n' +
+                "monthlyPaperCosts=" + monthlyPaperCosts + '\n' +
+                "monthlySalaryCosts=" + monthlySalaryCosts +
+                '}' + '\n' ;
     }
 }

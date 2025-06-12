@@ -42,6 +42,13 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     }
 
     @Override
+    public PressOffice addOffice(PressOffice pressOffice) {
+        pressOffices.add(pressOffice);
+
+        return pressOffice;
+    }
+
+    @Override
     public Employee createEmployee(String name, BigDecimal salary) {
         Employee newEmployee = new Employee(name, salary);
         employees.add(newEmployee);

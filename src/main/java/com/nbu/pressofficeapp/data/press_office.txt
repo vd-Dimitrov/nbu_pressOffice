@@ -1,0 +1,23 @@
+# PRESS_OFFICE
+name=Софийска печатница
+priceIncreasePercent=0.1
+managerBonusThreshold=15000
+paperDiscountAmount=1000
+paperDiscountPercent=0.1
+
+# BASE_PAPER_PRICE
+REGULAR=0.05
+GLOSSY=0.1
+NEWSPAPER=0.03
+
+# EMPLOYEES
+Иван Петров;1200;true
+Георги Иванов;1000;false
+
+# PAPERS
+REGULAR;A4
+GLOSSY;A3
+
+# MACHINES
+1000;60;REGULAR;A4;true
+800;40;GLOSSY;A3;false

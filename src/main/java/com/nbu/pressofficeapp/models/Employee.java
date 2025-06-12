@@ -66,4 +66,16 @@ public class Employee {
     public void setAssignedOffice(PressOffice assignedOffice) {
         this.assignedOffice = assignedOffice;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isManager=" + isManager +
+                ", hasBeenFired=" + hasBeenFired +
+                ", salary=" + salary +
+                ", assignedOffice=" + assignedOffice +
+                '}';
+    }
 }

@@ -14,6 +14,7 @@ public interface PressOfficeRepository {
      List<PressOffice> getOffices();
      PressOffice createOffice(String name, Map<PaperType, BigDecimal> basePaperPrice, double priceIncreasePercent,
                               BigDecimal managerBonusThreshold, int paperDiscountAmount, double paperDiscountPercent);
+     PressOffice addOffice(PressOffice pressOffice);
      Employee createEmployee(String name, BigDecimal salary);
      PressOffice findOfficeByName(String name);
      Employee findEmployeeById(long id);
