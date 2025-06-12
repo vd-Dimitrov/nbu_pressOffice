@@ -20,6 +20,7 @@ public interface PressOfficeRepository {
      Employee findEmployeeById(long id);
      Employee findEmployeeByName(String name);
      void fireEmployee(String name);
-
+     List<Employee> getEmployees();
+     void addEmployee(Employee employee);
      PressMachine findPressMachineById(long id);
 }

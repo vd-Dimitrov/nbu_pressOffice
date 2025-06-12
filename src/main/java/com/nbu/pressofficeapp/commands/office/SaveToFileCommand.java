@@ -36,7 +36,7 @@ public class SaveToFileCommand extends BaseCommand {
 
     public String saveToTextFile(PressOffice office, String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            // PRESS_OFFICE section
+            // PRESS_OFFICE
             writer.write("# PRESS_OFFICE\n");
             writer.write("name=" + office.getName() + "\n");
             writer.write("priceIncreasePercent=" + office.getPriceIncreasePercent() + "\n");

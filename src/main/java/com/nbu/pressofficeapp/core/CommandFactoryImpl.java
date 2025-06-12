@@ -2,7 +2,8 @@ package com.nbu.pressofficeapp.core;
 
 import com.nbu.pressofficeapp.commands.ShowCommandDescriptions;
 import com.nbu.pressofficeapp.commands.contracts.Command;
-import com.nbu.pressofficeapp.commands.employee.FireEmployeeCommand;
+import com.nbu.pressofficeapp.commands.employee.*;
+import com.nbu.pressofficeapp.commands.employee.view.ViewEmployeesCommand;
 import com.nbu.pressofficeapp.commands.enums.CommandType;
 import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.LoadPressOfficeCommand;
@@ -10,8 +11,6 @@ import com.nbu.pressofficeapp.commands.office.SaveToFileCommand;
 import com.nbu.pressofficeapp.commands.office.StockUpPapersCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficeFinanceCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
-import com.nbu.pressofficeapp.commands.employee.AssignEmployeeCommand;
-import com.nbu.pressofficeapp.commands.employee.CreateEmployeeCommand;
 import com.nbu.pressofficeapp.commands.pressMachine.CreatePressMachineCommand;
 import com.nbu.pressofficeapp.commands.pressMachine.LoadPressMachineCommand;
 import com.nbu.pressofficeapp.core.contracts.CommandFactory;
@@ -49,6 +48,12 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new LoadPressOfficeCommand(pressOfficeRepository);
             case SAVEPRESSOFFICE:
                 return new SaveToFileCommand(pressOfficeRepository);
+            case SERIALIZEEMPLOYEES:
+                return new SerializeEmployeesCommand(pressOfficeRepository);
+            case DESERIALIZEEMPLOYEES:
+                return new DeserializeEmployeesCommand(pressOfficeRepository);
+            case VIEWEMPLOYEES:
+                return new ViewEmployeesCommand(pressOfficeRepository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandTypeAsString));
         }

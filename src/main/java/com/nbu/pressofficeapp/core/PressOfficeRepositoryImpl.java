@@ -6,6 +6,7 @@ import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.PressOffice;
 import com.nbu.pressofficeapp.models.enums.PaperType;
+import com.nbu.pressofficeapp.utils.ValidationHelpers;
 
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
@@ -47,7 +48,7 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         if (!pressOffice.getEmployeeList().isEmpty()){
             employees.addAll(pressOffice.getEmployeeList());
         }
-        
+
         return pressOffice;
     }
 
@@ -66,6 +67,13 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
         toBeRemoved.setAssignedOffice(null);
         toBeRemoved.setHasBeenFired(true);
         pressOffice.removeMember(toBeRemoved);
+    }
+
+    @Override
+    public void addEmployee(Employee employee){
+        if (!ValidationHelpers.validateUniqueEmployee(employees, employee)){
+            employees.add(employee);
+        }
     }
 
     @Override
@@ -104,6 +112,7 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
                 .orElseThrow( () -> new EntityNotFoundException("Employee", "name", name));
     }
 
+    @Override
     public List<Employee> getEmployees() {
         return new ArrayList<>(this.employees);
     }

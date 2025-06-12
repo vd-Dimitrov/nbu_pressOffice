@@ -1,6 +1,8 @@
 package com.nbu.pressofficeapp.utils;
 
+import com.nbu.pressofficeapp.exceptions.DuplicateEntityException;
 import com.nbu.pressofficeapp.exceptions.InvalidValueException;
+import com.nbu.pressofficeapp.models.Employee;
 import com.nbu.pressofficeapp.models.PressMachine;
 import com.nbu.pressofficeapp.models.enums.PaperType;
 import com.nbu.pressofficeapp.models.enums.PaperSize;
@@ -31,5 +33,9 @@ public class ValidationHelpers {
 
     public static void validatePressMachineRequest(PressMachine pressMachine, PaperType paperType, PaperSize paperSize){
         
+    }
+
+    public static boolean validateUniqueEmployee(List<Employee> employees, Employee checkedEmployee){
+        return employees.stream().anyMatch(e -> e.equals(checkedEmployee));
     }
 }

@@ -14,9 +14,11 @@ public enum CommandType {
     LOADPRESSOFFICE("LOADPRESSOFFICE: Loads press office from a file. Requires the name of the text file"),
     SAVEPRESSOFFICE("SAVEPRESSOFFICE: Saves an office to the data folder. Requires the name of the office you want to save and a name for the text file"),
     CREATEPERSON("CREATEPERSON: Used to add a person to the repository. Requires their three names and salary"),
-    SHOWPERSON("SHOWPERSON: Will be used to show information about a single employee. Requires their name\n"),
+    VIEWEMPLOYEES("SHOWPERSON: Will be used to show information about a single employee. Requires their name\n"),
     ASSIGNEMPLOYEETOOFFICE("ASSIGNEMPLOYEETOOFFICE: Assigns an employee to an office. Requires employee id and office name"),
     FIREEMPLOYEE ("FIREEMPLOYEE: Removes employee from all offices and sets them as fired. Requires employee name"),
+    SERIALIZEEMPLOYEES("SERIALIZEEMPLOYEES: Serialize all employees in the repository"),
+    DESERIALIZEEMPLOYEES("DESERIALIZEEMPLOYEES: Deserialize all employees from a given file"),
     CREATEPRESSMACHINE ("CREATEPRESSMACHINE: Creates a press machine. Requires the following parameters: " +
             "paper capacity, the amount of pages per minute it prints, supported paper type and size," +
             " whether it supports colored printing and the office it is created for"),
