@@ -23,7 +23,7 @@ public class DeserializeEmployeesCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, 1);
-        String filepath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0);
+        String filepath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0) + ".ser";
         return deserializeEmployees(filepath);
     }
 

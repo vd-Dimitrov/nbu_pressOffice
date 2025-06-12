@@ -22,7 +22,7 @@ public class SerializeEmployeesCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, 1);
-        String filepath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0);
+        String filepath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0) + ".ser";
         List<Employee> employees = getPressOfficeRepository().getEmployees();
         return serializeEmployees(employees, filepath);
     }

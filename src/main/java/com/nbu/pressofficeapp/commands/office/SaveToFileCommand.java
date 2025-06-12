@@ -30,7 +30,7 @@ public class SaveToFileCommand extends BaseCommand {
         ValidationHelpers.validateArgumentsCount(parameters, 2);
 
         PressOffice office = getPressOfficeRepository().findOfficeByName(parameters.get(0));
-        String filePath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(1);
+        String filePath = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(1) + ".txt";
         return saveToTextFile(office, filePath);
     }
 

@@ -31,7 +31,7 @@ public class LoadPressOfficeCommand extends BaseCommand {
     @Override
     protected String executeCommand(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, 1);
-        String fileName = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0);
+        String fileName = "src/main/java/com/nbu/pressofficeapp/data/" + parameters.get(0) + ".txt";
 
         return loadPrintHouseFromText(fileName);
     }
