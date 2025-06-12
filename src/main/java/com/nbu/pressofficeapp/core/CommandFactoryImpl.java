@@ -6,6 +6,7 @@ import com.nbu.pressofficeapp.commands.employee.FireEmployeeCommand;
 import com.nbu.pressofficeapp.commands.enums.CommandType;
 import com.nbu.pressofficeapp.commands.office.CreateOfficeCommand;
 import com.nbu.pressofficeapp.commands.office.LoadPressOfficeCommand;
+import com.nbu.pressofficeapp.commands.office.SaveToFileCommand;
 import com.nbu.pressofficeapp.commands.office.StockUpPapersCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficeFinanceCommand;
 import com.nbu.pressofficeapp.commands.office.view.ShowOfficesCommand;
@@ -46,6 +47,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowOfficeFinanceCommand(pressOfficeRepository);
             case LOADPRESSOFFICE:
                 return new LoadPressOfficeCommand(pressOfficeRepository);
+            case SAVEPRESSOFFICE:
+                return new SaveToFileCommand(pressOfficeRepository);
             default:
                 throw new IllegalArgumentException(String.format(INVALID_COMMAND, commandTypeAsString));
         }

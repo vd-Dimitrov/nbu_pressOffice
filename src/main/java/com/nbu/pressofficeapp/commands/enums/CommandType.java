@@ -12,6 +12,7 @@ public enum CommandType {
             "name of office, paper type, paper size and amount"),
     SHOWOFFICEFINANCE("SHOWOFFICEFINANCE: Shows the income and expenses for an office. Requires office name"),
     LOADPRESSOFFICE("LOADPRESSOFFICE: Loads press office from a file. Requires the name of the text file"),
+    SAVEPRESSOFFICE("SAVEPRESSOFFICE: Saves an office to the data folder. Requires the name of the office you want to save and a name for the text file"),
     CREATEPERSON("CREATEPERSON: Used to add a person to the repository. Requires their three names and salary"),
     SHOWPERSON("SHOWPERSON: Will be used to show information about a single employee. Requires their name\n"),
     ASSIGNEMPLOYEETOOFFICE("ASSIGNEMPLOYEETOOFFICE: Assigns an employee to an office. Requires employee id and office name"),

@@ -8,7 +8,7 @@ import com.nbu.pressofficeapp.core.contracts.Engine;
 public class Main {
     public static void main(String[] args) {
         Engine engine = new PressOfficeEngineImpl();
-        System.out.println("Welcome to the Press Office program. If you're not sure where to start, just type SHOWCOMMANDDESCRIPTION for a list of all commands");
+        System.out.println("Welcome to the Press Office program. If you're not sure where to start, just type SHOWCOMMANDDESCRIPTION for a list of all commands and type Exit to quit the program");
         engine.start();
     }
 }
