@@ -44,7 +44,10 @@ public class PressOfficeRepositoryImpl implements PressOfficeRepository {
     @Override
     public PressOffice addOffice(PressOffice pressOffice) {
         pressOffices.add(pressOffice);
-
+        if (!pressOffice.getEmployeeList().isEmpty()){
+            employees.addAll(pressOffice.getEmployeeList());
+        }
+        
         return pressOffice;
     }
 
